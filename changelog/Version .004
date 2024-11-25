@@ -1,0 +1,13 @@
+Features Implemented
+Input Validation:
+
+Validates max_tokens, temperature, and rhyme_scheme.
+Firestore Integration:
+
+Saves generated lyrics along with metadata (theme, mood, genre, timestamp).
+Export Options:
+
+Text File (/export-txt/):
+Generates and serves lyrics as a downloadable .txt file.
+PDF File (/export-pdf/):
+Generates and serves lyrics as a downloadable .pdf file.
