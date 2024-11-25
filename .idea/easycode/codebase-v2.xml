@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/backend/config/firebase_config.json;C:/Users/Vazha/IdeaProjects/SoundForge/backend/routes/__init__.py;C:/Users/Vazha/IdeaProjects/SoundForge/backend/routes/chords.py;C:/Users/Vazha/IdeaProjects/SoundForge/backend/routes/drafts.py;C:/Users/Vazha/IdeaProjects/SoundForge/backend/routes/lyrics.py;C:/Users/Vazha/IdeaProjects/SoundForge/backend/utils/ai_helpers.py;C:/Users/Vazha/IdeaProjects/SoundForge/backend/app.py;C:/Users/Vazha/IdeaProjects/SoundForge/frontend/config/config.js;C:/Users/Vazha/IdeaProjects/SoundForge/frontend/screens/HomeScreen.js;C:/Users/Vazha/IdeaProjects/SoundForge/frontend/App.js;C:/Users/Vazha/IdeaProjects/SoundForge/README.md" />
+  </component>
+</project>
