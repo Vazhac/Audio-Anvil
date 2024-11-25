@@ -17,11 +17,7 @@ lyrics_bp = Blueprint("lyrics", __name__)
 @lyrics_bp.route("/", methods=["POST"])
 def generate_lyrics():
     """
-    Generate lyrics using OpenAI's latest client interface.
-    Customization options:
-    - max_tokens: Maximum word count for the lyrics.
-    - temperature: Controls creativity/randomness.
-    - rhyme_scheme: Optional rhyme scheme (e.g., AABB, ABAB).
+    Generate lyrics using OpenAI's latest client interface with validation.
     """
     data = request.json
 
@@ -29,11 +25,19 @@ def generate_lyrics():
     theme = data.get("theme", "life")
     mood = data.get("mood", "neutral")
     genre = data.get("genre", "general")
-    max_tokens = data.get("max_tokens", 200)  # Default to 200 tokens
-    temperature = data.get("temperature", 0.7)  # Default to moderate creativity
-    rhyme_scheme = data.get("rhyme_scheme")  # Optional rhyme scheme
+    max_tokens = data.get("max_tokens", 200)
+    temperature = data.get("temperature", 0.7)
+    rhyme_scheme = data.get("rhyme_scheme")
 
-    # Construct the prompt with optional rhyme scheme
+    # Validate inputs
+    if not isinstance(max_tokens, int) or not (1 <= max_tokens <= 2048):
+        return jsonify({"error": "max_tokens must be an integer between 1 and 2048"}), 400
+    if not isinstance(temperature, (int, float)) or not (0 <= temperature <= 1):
+        return jsonify({"error": "temperature must be a float between 0 and 1"}), 400
+    if rhyme_scheme and not isinstance(rhyme_scheme, str):
+        return jsonify({"error": "rhyme_scheme must be a string"}), 400
+
+    # Construct the prompt
     prompt = f"Write a {mood} {genre} song about {theme}."
     if rhyme_scheme:
         prompt += f" The song should follow a {rhyme_scheme} rhyme scheme."
@@ -67,3 +71,4 @@ def generate_lyrics():
     except Exception as e:
         # Handle exceptions and return error response
         return jsonify({"error": str(e)}), 500
+
