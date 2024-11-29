@@ -1,0 +1,18 @@
+Key Updates
+-Integrate User account creation and Login/Logout functionality
+
+-Increased max_tokens Limit:
+
+-Default is now 1024, and users can specify up to 2048.
+Save Lyrics to Firestore:
+
+-After generating lyrics, save them with metadata (theme, mood, genre, etc.) and the logged-in user.
+
+-added user authentication and authorization/logout functionality
+
+-added profile page/editing info still in progress
+
+-added home page - custom styling still in progress
+
+
+

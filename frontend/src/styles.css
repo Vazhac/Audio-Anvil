@@ -75,3 +75,387 @@ input, select, textarea {
     font-family: 'Courier New', monospace;
     color: #2a2a2a;
 }
+
+.home-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.auth-prompt p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.quick-actions {
+    margin-top: 20px;
+}
+
+.quick-actions button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quick-actions button:hover {
+    background-color: #0056b3;
+}
+
+.recent-activity {
+    margin-top: 30px;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-activity li {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.lyrics-form-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lyrics-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.lyrics-form input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.lyrics-form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.lyrics-form button:hover {
+    background-color: #0056b3;
+}
+
+.lyrics-output {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+}
+
+.error-message {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+.home-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.auth-prompt p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.quick-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.quick-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quick-actions button:hover {
+    background-color: #0056b3;
+}
+
+.recent-activity {
+    margin-top: 30px;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-activity li {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: "Courier New", monospace;
+}
+
+.home-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.auth-prompt p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.quick-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.quick-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quick-actions button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: "Courier New", monospace;
+}
+
+.lyrics-history-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.lyrics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lyrics-item {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lyrics-content {
+    white-space: pre-wrap;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    color: #555;
+}
+
+.lyrics-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:first-of-type {
+    background-color: #007bff;
+    color: white;
+}
+
+button:last-of-type {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-form {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form textarea {
+    width: 100%;
+    height: 100px;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-size: 16px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ff6f61;
+}
+
+.navbar-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+    color: #ff6f61;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-username {
+    font-size: 14px;
+    color: #ddd;
+}
+
+.navbar-logout,
+.navbar-login {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.navbar-logout:hover,
+.navbar-login:hover {
+    background-color: #ff4436;
+}
+
+.home-container {
+    text-align: center;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+}
+
+.quick-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.quick-links button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.quick-links button:hover {
+    background-color: #0056b3;
+}

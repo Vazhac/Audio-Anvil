@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Overall App Container */
+.app-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  background: linear-gradient(90deg, #1a1a1a, #2c2c2c);
   color: white;
+  font-family: "Poppins", sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+/* Content Container */
+.content-container {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* General buttons */
+button {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(90deg, #ff6f61, #ff4436);
+  border: none;
+  padding: 12px 20px; /* Uniform padding */
+  border-radius: 4px; /* Sharper edges for a modern look */
+  color: white;
+  font-size: 16px; /* Standardized font size */
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Add subtle shadow for depth */
+}
+
+button:hover {
+  background: linear-gradient(90deg, #ff4436, #ff6f61);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+}
+
+/* Button variants */
+button.outline {
+  background: transparent;
+  border: 2px solid #ff6f61;
+  color: #ff6f61;
+}
+
+button.outline:hover {
+  background: #ff6f61;
+  color: white;
+  border-color: #ff4436;
+}
+
+/* Links */
+a {
+  color: #ff6f61;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+a:hover {
+  color: #ff4436;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }

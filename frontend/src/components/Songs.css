@@ -1,0 +1,61 @@
+.songs-container {
+    padding: 20px;
+}
+
+.create-song-form {
+    margin-bottom: 20px;
+}
+
+.create-song-form input,
+.create-song-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.create-song-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-song-form button:hover {
+    background-color: #0056b3;
+}
+
+.songs-list {
+    list-style: none;
+    padding: 0;
+}
+
+.songs-list li {
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.songs-list li.selected {
+    border-color: #007bff;
+    background-color: #e7f3ff;
+}
+
+.songs-list li button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.songs-list li button:hover {
+    background-color: #218838;
+}

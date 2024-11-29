@@ -1,0 +1,227 @@
+/* General container styling */
+.lyrics-form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+h2 {
+    text-align: center;
+    color: #ff6f61;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    animation: slideInDown 0.8s ease-in-out;
+}
+
+/* Form layout */
+.lyrics-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-size: 13px;
+    color: #bbbbbb;
+    margin-top: -4px;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+/* Inputs and selects */
+input,
+select {
+    padding: 12px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    background: #3b3b3b; /* Darker background for better contrast */
+    color: white;
+    transition: box-shadow 0.3s, background 0.3s, transform 0.3s;
+}
+
+input::placeholder {
+    color: #888888;
+    font-style: italic;
+}
+
+select {
+    cursor: pointer;
+}
+
+input:focus,
+select:focus {
+    box-shadow: 0px 0px 6px #ff6f61;
+    background: #444; /* Slightly lighter background on focus */
+}
+
+/* Temperature slider */
+input[type="range"] {
+    background: linear-gradient(90deg, #ff6f61, #ff4436);
+    height: 6px;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #ff6f61;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.temperature-value {
+    font-size: 13px;
+    color: #ccc;
+    margin-top: 5px;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Error message */
+.error-message {
+    color: #ff4436;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+    animation: bounceIn 0.8s ease;
+}
+
+/* Generate button */
+.generate-button {
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #ff6f61, #ff4436);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.generate-button:hover {
+    background: linear-gradient(90deg, #ff4436, #ff6f61);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.generate-button:disabled {
+    background: #555; /* Darker disabled background */
+    cursor: not-allowed;
+}
+
+/* Lyrics output */
+.lyrics-output {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #2c2c2c, #3b3b3b);
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', monospace;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.lyrics-output h3 {
+    color: #ff6f61;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Dropdown menu styling */
+select {
+    background: #3b3b3b; /* Darker dropdown background */
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    transition: box-shadow 0.3s;
+}
+
+select:hover {
+    box-shadow: 0 0 6px #ff6f61;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}

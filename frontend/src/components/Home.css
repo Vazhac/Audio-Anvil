@@ -1,0 +1,74 @@
+/* Home Container */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    background: linear-gradient(135deg, #ff6f61, #ff9d84);
+    min-height: 100vh;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-title {
+    font-size: 48px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.welcome-message {
+    font-size: 18px;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Action Section */
+.action-section {
+    text-align: center;
+}
+
+.action-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.action-button {
+    background: linear-gradient(90deg, #ffffff, #ffefeb);
+    color: #ff6f61;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.action-button:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(90deg, #ffefeb, #ffffff);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.action-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
