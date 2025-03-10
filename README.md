@@ -1,5 +1,5 @@
-# SoundBright
-SoundBright is a songwriting companion app designed to help musicians generate lyrics, suggest chord progressions, and save drafts for their songs.
+# AudioAnvil
+AudioAnvil is a songwriting companion app designed to help musicians generate lyrics, suggest chord progressions, and save drafts for their songs.
 
 ## Features
 - AI-powered lyric generation based on themes, moods, and genres.
