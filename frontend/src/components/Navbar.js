@@ -49,7 +49,7 @@ const Navbar = ({ token, handleLogout, user }) => {
     return (
         <nav className="navbar">
             <div className="navbar-logo" onClick={() => navigate("/")}>
-                SoundForge
+                AudioAnvil
             </div>
             <ul className="navbar-links">
                 <li>

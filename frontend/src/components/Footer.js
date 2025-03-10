@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
-                <p>© 2024 SoundForge. All rights reserved.</p>
+                <p>© 2024 AudioAnvil. All rights reserved.</p>
                 <ul className="footer-links">
                     <li>
                         <a href="/about">About</a>

@@ -8,7 +8,7 @@ const Home = ({ user }) => {
     return (
         <div className="home-container">
             <div className="welcome-section">
-                <h1 className="welcome-title">🎵 Welcome to SoundForge 🎵</h1>
+                <h1 className="welcome-title">🎵 Welcome to AudioAnvil 🎵</h1>
                 <p className="welcome-message">
                     {user
                         ? `Hey, ${user}! Ready to create your next masterpiece?`
