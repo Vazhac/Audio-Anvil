@@ -148,9 +148,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .lyrics-output {
     margin-top: 30px;
     padding: 20px;
-    background: linear-gradient(135deg, #2c2c2c, #3b3b3b);
+    background: linear-gradient(pink, black);
     border-radius: 10px;
-    color: white;
+    color: black;
     font-size: 15px;
     line-height: 1.6;
     white-space: pre-wrap;
