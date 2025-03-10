@@ -6,7 +6,7 @@
     background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
     color: white;
     border-radius: 12px;
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     font-family: 'Poppins', sans-serif;
     animation: fadeIn 0.8s ease-in-out;
 }
@@ -73,7 +73,7 @@ select {
 
 input:focus,
 select:focus {
-    box-shadow: 0px 0px 6px #ff6f61;
+    box-shadow: 0 0 6px #ff6f61;
     background: #444; /* Slightly lighter background on focus */
 }
 
@@ -136,7 +136,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .generate-button:hover {
     background: linear-gradient(90deg, #ff4436, #ff6f61);
     transform: scale(1.05);
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
 .generate-button:disabled {
