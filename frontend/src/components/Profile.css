@@ -3,10 +3,10 @@
     max-width: 600px;
     margin: 50px auto;
     padding: 30px;
-    background: linear-gradient(135deg, #ffffff, #f0f4f9);
+    background: #ffffff; /* Clean white background */
     border: 1px solid #e0e0e0;
     border-radius: 12px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
     font-family: "Poppins", sans-serif;
     color: #333;
     animation: fadeIn 0.5s ease;
@@ -15,41 +15,39 @@
 /* Header */
 h2 {
     text-align: center;
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 600;
     margin-bottom: 25px;
-    color: #4a4a4a;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
 }
 
 /* Success and Error Messages */
-.success-message {
-    color: #28a745;
+.success-message,
+.error-message {
     text-align: center;
     font-weight: 500;
     margin-bottom: 15px;
-    background: rgba(40, 167, 69, 0.1);
     padding: 10px;
     border-radius: 8px;
+}
+
+.success-message {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
 }
 
 .error-message {
     color: #dc3545;
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 15px;
     background: rgba(220, 53, 69, 0.1);
-    padding: 10px;
-    border-radius: 8px;
 }
 
 /* User Info Section */
 .user-info {
     margin-top: 30px;
-    padding: 15px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
 }
 
 /* Info Row */
@@ -58,10 +56,15 @@ h2 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    padding: 10px 15px;
-    background: linear-gradient(90deg, #ffffff, #f4f4f4);
+    padding: 12px 15px;
+    background: #fff;
+    border: 1px solid #eaeaea;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.info-row:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .info-row label {
@@ -97,7 +100,7 @@ input {
 
 input:focus {
     border-color: #ff6f61;
-    box-shadow: 0 0 6px rgba(255, 111, 97, 0.5);
+    box-shadow: 0 0 6px rgba(255, 111, 97, 0.3);
 }
 
 /* Button Styles */
@@ -105,18 +108,18 @@ button {
     padding: 10px 15px;
     font-size: 14px;
     font-weight: 500;
-    background: linear-gradient(90deg, #ff6f61, #ff4436);
+    background: #ff6f61;
     border: none;
     border-radius: 8px;
-    color: white;
+    color: #fff;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
 button:hover {
-    background: linear-gradient(90deg, #ff4436, #ff6f61);
+    background: #ff4436;
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Profile Image Section */
@@ -147,17 +150,17 @@ button:hover {
     padding: 8px 12px;
     font-size: 14px;
     font-weight: 500;
-    color: white;
+    color: #fff;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(90deg, #6c63ff, #5848c2);
+    background: #6c63ff;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
 }
 
 .upload-button:hover,
 .delete-button:hover {
-    background: linear-gradient(90deg, #5848c2, #6c63ff);
+    background: #5848c2;
     transform: scale(1.05);
 }
 

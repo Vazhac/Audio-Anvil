@@ -1,9 +1,10 @@
+// App.js
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
-import Signup from "./components/Signup"
-import Home from "./components/Home";
+import Signup from "./components/Signup";
+import Home from "./components/Home"; // Updated Home includes the new dashboard layout
 import LyricsForm from "./components/LyricsForm";
 import LyricsHistory from "./components/LyricsHistory";
 import Songs from "./components/Songs";
@@ -40,7 +41,8 @@ const App = () => {
         <Router>
             <Navbar token={token} handleLogout={handleLogout} user={user} />
             <Routes>
-                <Route path="/" element={<Home token={token} />} />
+                {/* Home route renders the updated dashboard from Home.js */}
+                <Route path="/" element={<Home token={token} user={user} />} />
                 <Route path="/lyrics" element={<LyricsForm token={token} />} />
                 <Route path="/login" element={<Login handleLogin={handleLogin} />} />
                 <Route path="/signup" element={<Signup />} />
@@ -48,7 +50,7 @@ const App = () => {
                 <Route path="/songs" element={<Songs token={token} />} />
                 <Route path="/profile" element={<Profile token={token} user={user} />} />
             </Routes>
-            <Footer></Footer>
+            <Footer />
         </Router>
     );
 };
