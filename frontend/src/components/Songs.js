@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./Songs.css";
 
-const Songs = ({ token }) => {
+const Songs = ({token}) => {
     const [songs, setSongs] = useState([]);
-    const [newSong, setNewSong] = useState({ title: "", lyrics: "" });
+    const [newSong, setNewSong] = useState({title: "", lyrics: ""});
     const [selectedSong, setSelectedSong] = useState(null);
     const [error, setError] = useState("");
-
-    // Fetch songs
+// Fetch songs
     useEffect(() => {
         const fetchSongs = async () => {
             try {
                 const response = await axios.get("/api/songs/list", {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 });
                 setSongs(response.data);
             } catch (error) {
@@ -23,40 +22,40 @@ const Songs = ({ token }) => {
         fetchSongs();
     }, [token]);
 
-    // Create a new song
+// Create a new song
     const handleCreateSong = async () => {
         try {
             const response = await axios.post(
                 "/api/songs/create",
                 newSong,
-                { headers: { Authorization: `Bearer ${token}` } }
+                {headers: {Authorization: `Bearer ${token}`}}
             );
-            setSongs([...songs, { id: response.data.id, ...newSong }]);
-            setNewSong({ title: "", lyrics: "" });
+            setSongs([...songs, {id: response.data.id, ...newSong}]);
+            setNewSong({title: "", lyrics: ""});
         } catch (error) {
             setError(error.response?.data?.error || "Failed to create song.");
         }
     };
 
-    // Generate chord progressions for a song
+// Generate chord progressions for a song
     const handleGenerateChords = async (songId) => {
         try {
             const response = await axios.post(
                 "/api/songs/generate_chords",
-                { theme: "general", mood: "neutral" },
-                { headers: { Authorization: `Bearer ${token}` } }
+                {theme: "general", mood: "neutral"},
+                {headers: {Authorization: `Bearer ${token}`}}
             );
             const updatedSong = {
                 ...selectedSong,
                 chord_progressions: response.data.chords,
             };
             await axios.put(`/api/songs/${songId}`, updatedSong, {
-                headers: { Authorization: `Bearer ${token}` },
+                headers: {Authorization: `Bearer ${token}`},
             });
             setSelectedSong(updatedSong);
             setSongs((prevSongs) =>
                 prevSongs.map((song) =>
-                    song.id === songId ? { ...song, ...updatedSong } : song
+                    song.id === songId ? {...song, ...updatedSong} : song
                 )
             );
         } catch (error) {
@@ -73,12 +72,12 @@ const Songs = ({ token }) => {
                     type="text"
                     placeholder="Song Title"
                     value={newSong.title}
-                    onChange={(e) => setNewSong({ ...newSong, title: e.target.value })}
+                    onChange={(e) => setNewSong({...newSong, title: e.target.value})}
                 />
                 <textarea
                     placeholder="Song Lyrics"
                     value={newSong.lyrics}
-                    onChange={(e) => setNewSong({ ...newSong, lyrics: e.target.value })}
+                    onChange={(e) => setNewSong({...newSong, lyrics: e.target.value})}
                 />
                 <button onClick={handleCreateSong}>Create Song</button>
             </div>
@@ -103,5 +102,4 @@ const Songs = ({ token }) => {
         </div>
     );
 };
-
 export default Songs;

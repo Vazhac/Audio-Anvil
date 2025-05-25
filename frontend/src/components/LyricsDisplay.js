@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const LyricsDisplay = ({ lyrics }) => {
+const LyricsDisplay = ({lyrics}) => {
     const exportLyrics = async (format) => {
         try {
             const endpoint =
@@ -9,7 +9,7 @@ const LyricsDisplay = ({ lyrics }) => {
                     ? "http://127.0.0.1:5000/api/lyrics/export-txt/"
                     : "http://127.0.0.1:5000/api/lyrics/export-pdf/";
 
-            const response = await axios.post(endpoint, { lyrics }, { responseType: "blob" });
+            const response = await axios.post(endpoint, {lyrics}, {responseType: "blob"});
             const blob = new Blob([response.data]);
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);

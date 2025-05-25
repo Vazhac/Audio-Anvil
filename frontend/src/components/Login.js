@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
-const Login = ({ handleLogin }) => {
+const Login = ({handleLogin}) => {
     const [identifier, setIdentifier] = useState(""); // Use for both username and email
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -11,26 +11,22 @@ const Login = ({ handleLogin }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(""); // Clear previous errors
+        setError("");
 
-        // Basic Frontend Validation
         if (!identifier || !password) {
             setError("Both username/email and password are required.");
             return;
         }
 
         try {
-            console.log("Attempting login with:", { identifier, password });
-
-            // Make API request
             const response = await axios.post("/api/auth/login", {
-                username: identifier, // Backend expects "username" as the key
+                username: identifier.toLowerCase(), // normalize to lowercase
                 password,
             });
 
             console.log("Login successful:", response.data);
 
-            const { access_token, user } = response.data;
+            const {access_token, user} = response.data;
 
             // Pass tokens and user info to parent handler
             handleLogin(access_token, user);

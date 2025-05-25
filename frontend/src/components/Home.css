@@ -101,3 +101,119 @@
     line-height: 1.6;
     color: #333;
 }
+
+/* Fade-in animation */
+.animated-fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Optional: style for login prompt */
+.login-prompt {
+    margin-top: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.login-prompt a {
+    color: #ffe6e1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-prompt a:hover {
+    color: #ffb3a7;
+}
+
+/* New styles for dashboard intro and buttons */
+
+.dashboard-intro {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+
+.dashboard-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.dashboard-intro p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: #ffe6e1;
+}
+
+.primary-button {
+    background: #ff6f61;
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    margin: 10px 15px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.primary-button:hover {
+    background: #e65b50;
+}
+
+.secondary-button {
+    background: transparent;
+    border: 2px solid #ff6f61;
+    color: #ff6f61;
+    padding: 15px 35px;
+    margin: 10px 15px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.secondary-button:hover {
+    background: #ff6f61;
+    color: white;
+}
+
+/* Feature preview list */
+.feature-preview {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 25px 30px;
+    border-radius: 10px;
+    text-align: left;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.feature-preview h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.feature-preview ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 1.1rem;
+}
+
+.feature-preview li {
+    margin-bottom: 12px;
+}

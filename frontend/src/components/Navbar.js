@@ -1,25 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, {useState, useEffect, useRef} from "react";
+import {NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "./Navbar.css";
 
-const Navbar = ({ token, handleLogout, user }) => {
-    const [profile, setProfile] = useState(user || { username: "User", profileImage: "" });
+const Navbar = ({token, handleLogout, user}) => {
+    const [profile, setProfile] = useState(user || {username: "User", profileImage: ""});
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (token) {
-            if (!user.profileImage) {
-                // Fetch dynamically generated avatar
+            if (!user?.profileImage) {
                 const fetchAvatar = async () => {
                     try {
                         const response = await axios.get(`/api/user/default_avatar/${user.username}`, {
                             responseType: "blob",
                         });
                         const avatarUrl = URL.createObjectURL(response.data);
-                        setProfile((prev) => ({ ...prev, profileImage: avatarUrl }));
+                        console.log("Fetched avatar URL:", avatarUrl);
+                        setProfile((prev) => ({...prev, profileImage: avatarUrl}));
                     } catch (error) {
                         console.error("Error fetching avatar:", error);
                     }
@@ -29,7 +29,7 @@ const Navbar = ({ token, handleLogout, user }) => {
                 setProfile(user);
             }
         } else {
-            setProfile({ username: "User", profileImage: "" });
+            setProfile({username: "User", profileImage: ""});
         }
     }, [token, user]);
 
@@ -53,24 +53,29 @@ const Navbar = ({ token, handleLogout, user }) => {
             </div>
             <ul className="navbar-links">
                 <li>
-                    <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+                    <NavLink to="/" className={({isActive}) => (isActive ? "active" : "")}>
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/lyrics" className={({ isActive }) => (isActive ? "active" : "")}>
+                    <NavLink to="/lyrics" className={({isActive}) => (isActive ? "active" : "")}>
                         Generate Lyrics
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/chords" className={({isActive}) => (isActive ? "active" : "")}>
+                        Generate Chords
                     </NavLink>
                 </li>
                 {token && (
                     <>
                         <li>
-                            <NavLink to="/lyrics/history" className={({ isActive }) => (isActive ? "active" : "")}>
+                            <NavLink to="/lyrics/history" className={({isActive}) => (isActive ? "active" : "")}>
                                 Lyrics History
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/songs" className={({ isActive }) => (isActive ? "active" : "")}>
+                            <NavLink to="/songs" className={({isActive}) => (isActive ? "active" : "")}>
                                 Songs
                             </NavLink>
                         </li>

@@ -19,12 +19,17 @@ import re
 from flask import send_file
 from PIL import Image, ImageDraw, ImageFont
 import io
+from routes.chords import chords_bp
+
 # Load environment variables
 load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}}) # Adjust origins for production
+CORS(app, resources={r"/*": {"origins": "*"}})  # Adjust origins for production
+
+# After initializing your Flask app (app = Flask(__name__)) and before running it:
+app.register_blueprint(chords_bp, url_prefix="/api/chords")
 
 # Set OpenAI API Key
 
@@ -45,15 +50,18 @@ UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+
 # ------------------------------- Helper Functions -------------------------------
 def validate_email(email):
     """Validate email format."""
     email_regex = r"^[\w\.-]+@[\w\.-]+\.\w+$"
     return re.match(email_regex, email) is not None
 
+
 def validate_password(password):
     """Validate password strength."""
     return len(password) >= 8
+
 
 def generate_chords(theme, mood):
     """Generate chord progressions based on theme and mood."""
@@ -64,6 +72,7 @@ def generate_chords(theme, mood):
     }
     mood_chords = progressions.get(mood.lower(), [["C", "G", "Am", "F"]])
     return mood_chords[len(theme) % len(mood_chords)]
+
 
 def create_default_image(initial, filepath):
     try:
@@ -101,7 +110,6 @@ def create_default_image(initial, filepath):
         image.save(filepath, "PNG")
     except Exception as e:
         logging.error(f"Error generating default avatar: {e}")
-
 
 
 # ------------------------------- Routes -------------------------------
@@ -164,6 +172,7 @@ def update_user():
     updated_user = db.collection("users").document(current_user).get().to_dict()
     return jsonify({"message": "User updated successfully.", "user": updated_user}), 200
 
+
 @app.route("/api/user/default_avatar/<username>", methods=["GET"])
 def generate_initial_avatar(username):
     try:
@@ -213,6 +222,7 @@ def generate_initial_avatar(username):
     except Exception as e:
         logging.error(f"Error generating default avatar: {e}")
         return jsonify({"error": "Failed to generate avatar"}), 500
+
 
 # Profile Image Upload/Remove
 @app.route("/api/user/profile_image", methods=["POST", "GET", "DELETE"])
@@ -305,10 +315,12 @@ def manage_profile_image():
             logging.exception("Failed to delete profile image.")
             return jsonify({"error": f"Failed to delete profile image: {str(e)}"}), 500
 
+
 # Serve Uploaded Files
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 # Lyrics Management
 @app.route("/api/lyrics", methods=["POST"])
@@ -367,6 +379,7 @@ def generate_lyrics():
         logging.error(f"Error in /api/lyrics: {e}")
         return jsonify({"error": "Failed to generate lyrics."}), 500
 
+
 @app.route("/api/lyrics/delete/<string:lyrics_id>", methods=["DELETE"])
 @jwt_required()
 def delete_lyrics(lyrics_id):
@@ -382,12 +395,14 @@ def delete_lyrics(lyrics_id):
     lyrics_ref.delete()
     return jsonify({"message": "Lyrics deleted successfully."}), 200
 
+
 @app.route("/api/lyrics/history", methods=["GET"])
 @jwt_required()
 def get_lyrics_history():
     try:
         current_user = get_jwt_identity()
-        lyrics_docs = db.collection("lyrics").where("user", "==", current_user).order_by("created_at", direction=firestore.Query.DESCENDING).stream()
+        lyrics_docs = db.collection("lyrics").where("user", "==", current_user).order_by("created_at",
+                                                                                         direction=firestore.Query.DESCENDING).stream()
 
         lyrics_history = {}
         for doc in lyrics_docs:
@@ -449,6 +464,7 @@ def get_songs():
     song_list = [song.to_dict() for song in songs]
     return jsonify({"songs": song_list}), 200
 
+
 @app.route("/api/songs/<string:song_id>", methods=["GET"])
 @jwt_required()
 def get_song(song_id):
@@ -462,13 +478,6 @@ def get_song(song_id):
     song_data = song_doc.to_dict()
     return jsonify({"song": song_data}), 200
 
-
-@app.route("/api/songs/generate_chords", methods=["POST"])
-@jwt_required()
-def generate_chords_route():
-    data = request.json
-    chords = generate_chords(data.get("theme", ""), data.get("mood", "neutral"))
-    return jsonify({"chords": chords}), 200
 
 @app.route("/api/songs/<string:song_id>", methods=["PUT", "DELETE"])
 @jwt_required()
@@ -494,6 +503,7 @@ def manage_song(song_id):
         song_ref.delete()
         return jsonify({"message": "Song deleted successfully."}), 200
 
+
 # ------------------------------- Authentication -------------------------------
 @app.route("/api/auth/refresh", methods=["POST"])
 @jwt_required(refresh=True)
@@ -505,6 +515,7 @@ def refresh_token():
     except Exception as e:
         return jsonify({"error": "Failed to refresh token"}), 500
 
+
 @app.route("/api/auth/signup", methods=["POST"])
 def signup():
     try:
@@ -514,27 +525,38 @@ def signup():
         password = data.get("password")
 
         if not username or not email or not password:
-            return jsonify({"error": "All fields (username, email, password) are required."}), 400
+            return jsonify({"error": "All fields are required."}), 400
 
-        if not validate_email(email):
-            return jsonify({"error": "Invalid email address."}), 400
+        username_lower = username.lower()
+        email_lower = email.lower()
 
-        if not validate_password(password):
-            return jsonify({"error": "Password must be at least 8 characters long."}), 400
+        # Check if username or email already exists (case-insensitive)
+        username_query = db.collection("users").where("username_lower", "==", username_lower).stream()
+        if any(username_query):
+            return jsonify({"error": "Username already taken."}), 400
 
-        user_ref = db.collection("users").document(username)
-        email_query = db.collection("users").where("email", "==", email).stream()
-
-        if user_ref.get().exists or any(email_query):  # Use `.exists` as a property
-            return jsonify({"error": "User with this username or email already exists."}), 400
+        email_query = db.collection("users").where("email_lower", "==", email_lower).stream()
+        if any(email_query):
+            return jsonify({"error": "Email already in use."}), 400
 
         hashed_password = generate_password_hash(password)
-        user_ref.set({"email": email, "password": hashed_password})
+
+        # Save user with lowercase fields
+        db.collection("users").document(username).set({
+            "username": username,
+            "username_lower": username_lower,
+            "email": email,
+            "email_lower": email_lower,
+            "password": hashed_password,
+            # Add other fields as needed
+        })
+
         return jsonify({"message": "User created successfully"}), 201
 
     except Exception as e:
-        logging.error(f"Error in signup: {e}")
+        logging.error(f"Signup error: {e}")
         return jsonify({"error": "Internal server error"}), 500
+
 
 @app.route("/api/auth/login", methods=["POST"])
 def login():
@@ -546,41 +568,54 @@ def login():
         if not identifier or not password:
             return jsonify({"error": "Username or email and password are required."}), 400
 
-        # Fetch user by email or username
-        if "@" in identifier:
-            user_query = db.collection("users").where("email", "==", identifier).stream()
+        identifier_lower = identifier.lower()
+
+        # Query Firestore case-insensitively by using lowercase fields
+        if "@" in identifier_lower:
+            user_query = db.collection("users").where("email_lower", "==", identifier_lower).stream()
             user_doc = next(iter(user_query), None)
         else:
-            user_doc = db.collection("users").document(identifier).get()
+            user_query = db.collection("users").where("username_lower", "==", identifier_lower).stream()
+            user_doc = next(iter(user_query), None)
 
         if not user_doc or not user_doc.exists:
             return jsonify({"error": "Invalid username or email."}), 401
 
         user = user_doc.to_dict()
 
-        # Ensure the user dictionary includes a fallback for "username"
-        username = user.get("username", identifier)  # Fallback to identifier if username is missing
-
-        # Verify the password
+        # Password check remains case-sensitive
         if not check_password_hash(user["password"], password):
             return jsonify({"error": "Invalid password."}), 401
 
-        # Generate tokens
-        access_token = create_access_token(identity=username)
-        refresh_token = create_refresh_token(identity=username)
+        access_token = create_access_token(identity=user.get("username"))
+        refresh_token = create_refresh_token(identity=user.get("username"))
 
         return jsonify({
             "access_token": access_token,
             "refresh_token": refresh_token,
-            "user": {
-                "username": username,
-                "email": user["email"]
-            }
+            "user": user
         }), 200
 
     except Exception as e:
-        app.logger.error(f"Error in login: {e}")
+        logging.error(f"Login error: {e}")
         return jsonify({"error": "Internal server error"}), 500
+
+
+@app.route("/api/chords/generate", methods=["POST"])
+@jwt_required()
+def generate_chords_route():
+    try:
+        data = request.json
+        theme = data.get("theme", "")
+        mood = data.get("mood", "neutral")
+
+        # Use your existing generate_chords helper function
+        chords = generate_chords(theme, mood)
+
+        return jsonify({"chords": chords}), 200
+    except Exception as e:
+        logging.error(f"Error generating chords: {e}")
+        return jsonify({"error": "Failed to generate chords."}), 500
 
 
 # Run Flask App

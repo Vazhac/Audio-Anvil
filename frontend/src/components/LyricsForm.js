@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import "./LyricsForm.css";
 
-const LyricsForm = ({ token }) => {
+const LyricsForm = ({token}) => {
     const [formData, setFormData] = useState({
         theme: "",
         mood: "neutral",
@@ -11,14 +11,13 @@ const LyricsForm = ({ token }) => {
         max_tokens: 200,
         temperature: 0.7,
     });
-
     const [generatedLyrics, setGeneratedLyrics] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
     };
 
     const handleSubmit = async (e) => {
@@ -27,7 +26,7 @@ const LyricsForm = ({ token }) => {
         setErrorMessage("");
         setLoading(true);
 
-        const { theme, mood, genre, rhyme_scheme, max_tokens, temperature } = formData;
+        const {theme, mood, genre, rhyme_scheme, max_tokens, temperature} = formData;
 
         // Validate inputs
         if (!theme || !mood || !genre) {
@@ -48,7 +47,7 @@ const LyricsForm = ({ token }) => {
                     max_tokens: max_tokens || 200,
                     temperature: temperature || 0.7,
                 },
-                { headers: { Authorization: `Bearer ${token}` } }
+                {headers: {Authorization: `Bearer ${token}`}}
             );
 
             if (response.data?.lyrics) {
@@ -62,9 +61,9 @@ const LyricsForm = ({ token }) => {
                     "/api/lyrics/history",
                     {
                         lyrics,
-                        metadata: { theme, mood, genre, rhyme_scheme, max_tokens, temperature },
+                        metadata: {theme, mood, genre, rhyme_scheme, max_tokens, temperature},
                     },
-                    { headers: { Authorization: `Bearer ${token}` } }
+                    {headers: {Authorization: `Bearer ${token}`}}
                 );
             } else {
                 setErrorMessage("No lyrics generated. Please try again.");
@@ -103,8 +102,8 @@ const LyricsForm = ({ token }) => {
                     <label htmlFor="mood">
                         <strong>Mood</strong>
                         <span className="description">
-                            The emotional tone of your lyrics.
-                        </span>
+                        The emotional tone of your lyrics.
+                    </span>
                     </label>
                     <select
                         id="mood"
@@ -128,8 +127,8 @@ const LyricsForm = ({ token }) => {
                     <label htmlFor="genre">
                         <strong>Genre</strong>
                         <span className="description">
-                            The musical style or category of your song.
-                        </span>
+                        The musical style or category of your song.
+                    </span>
                     </label>
                     <select
                         id="genre"
@@ -154,8 +153,8 @@ const LyricsForm = ({ token }) => {
                     <label htmlFor="rhyme_scheme">
                         <strong>Rhyme Scheme</strong>
                         <span className="description">
-                            The pattern of rhyming in your song (optional).
-                        </span>
+                        The pattern of rhyming in your song (optional).
+                    </span>
                     </label>
                     <select
                         id="rhyme_scheme"
@@ -174,8 +173,8 @@ const LyricsForm = ({ token }) => {
                     <label htmlFor="max_tokens">
                         <strong>Maximum Length</strong>
                         <span className="description">
-                            The maximum number of tokens for your song. 1 token ≈ 4 characters.
-                        </span>
+                        The maximum number of tokens for your song. 1 token ≈ 4 characters.
+                    </span>
                     </label>
                     <input
                         type="number"
@@ -193,8 +192,8 @@ const LyricsForm = ({ token }) => {
                     <label htmlFor="temperature">
                         <strong>Creativity Level</strong>
                         <span className="description">
-                            Adjusts randomness in the output. Lower values = more focused; higher = more creative.
-                        </span>
+                        Adjusts randomness in the output. Lower values = more focused; higher = more creative.
+                    </span>
                     </label>
                     <input
                         type="range"
@@ -208,21 +207,26 @@ const LyricsForm = ({ token }) => {
                     />
                     <span className="temperature-value">{formData.temperature}</span>
                 </div>
-                {errorMessage && <p className="error-message" style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>}
+                {errorMessage &&
+                    <p className="error-message" style={{color: "red", fontWeight: "bold"}}>{errorMessage}</p>}
                 <button type="submit" className="generate-button" disabled={loading}>
                     {loading ? "Generating..." : "Generate Lyrics"}
                 </button>
             </form>
             {generatedLyrics && (
                 <div className="lyrics-output">
-                    <h3 style={{ color: "#ff6f61" }}>Your Generated Lyrics</h3>
-                    <pre style={{ whiteSpace: "pre-wrap", backgroundColor: "#f9f9f9", padding: "10px", borderRadius: "8px" }}>
-                        {generatedLyrics}
-                    </pre>
+                    <h3 style={{color: "#ff6f61"}}>Your Generated Lyrics</h3>
+                    <pre style={{
+                        whiteSpace: "pre-wrap",
+                        backgroundColor: "#f9f9f9",
+                        padding: "10px",
+                        borderRadius: "8px"
+                    }}>
+                    {generatedLyrics}
+                </pre>
                 </div>
             )}
         </div>
     );
 };
-
 export default LyricsForm;

@@ -10,6 +10,7 @@ import LyricsHistory from "./components/LyricsHistory";
 import Songs from "./components/Songs";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
+import Chords from "./components/Chords";
 
 const App = () => {
     const [token, setToken] = useState(localStorage.getItem("token"));
@@ -43,6 +44,7 @@ const App = () => {
             <Routes>
                 {/* Home route renders the updated dashboard from Home.js */}
                 <Route path="/" element={<Home token={token} user={user} />} />
+                <Route path="/chords" element={<Chords />} />
                 <Route path="/lyrics" element={<LyricsForm token={token} />} />
                 <Route path="/login" element={<Login handleLogin={handleLogin} />} />
                 <Route path="/signup" element={<Signup />} />
